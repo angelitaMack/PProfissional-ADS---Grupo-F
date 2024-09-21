@@ -1,0 +1,133 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-image: url('background.jpg');
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+}
+
+header {
+    background-color: rgba(0, 123, 255, 0.8);
+    color: white;
+    padding: 20px 0;
+}
+
+h1 {
+    font-size: 2.5rem;
+}
+
+.container-login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+}
+
+form {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    position: relative; /* Necessário para o posicionamento do ícone */
+}
+
+h2 {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin: 10px 0 5px;
+}
+
+input, select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box; /* Para incluir padding e border na largura total */
+    text-align: center; /* Centraliza o texto dentro da caixa de entrada */
+}
+
+.container-senha {
+    position: relative;
+}
+
+input[type="password"] {
+    padding-right: 40px; /* Espaço para o ícone */
+}
+
+.icone-olho {
+    position: absolute;
+    right: 10px; /* Espaço à direita do campo de senha */
+    top: 50%;
+    transform: translateY(-50%);
+    height: 20px; /* Ajusta a altura do ícone */
+    cursor: pointer;
+}
+
+button {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+button:active {
+    background-color: #004080;
+}
+
+footer {
+    background-color: rgba(0, 123, 255, 0.8); /* Tom de azul similar ao cabeçalho */
+    color: white;
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 0.9rem; /* Tamanho da fonte menor */
+    display: flex; /* Usar flexbox */
+    flex-wrap: wrap; /* Permite que os itens quebrem para a linha seguinte, se necessário */
+    align-items: center; /* Alinha itens ao centro verticalmente */
+    justify-content: center; /* Centraliza os itens */
+    gap: 20px; /* Espaço entre os itens */
+}
+
+.container-login form p {
+    margin-top: 15px; /* Espaço acima do link para voltar */
+}
+
+.container-login form input {
+    margin-bottom: 20px; /* Aumenta o espaço abaixo do campo de email */
+}
+
+.hidden {
+    display: none; /* Esconde elementos com a classe 'hidden' */
+}
+
+
+footer img.logo {
+    height: 30px; /* Ajusta a altura da imagem */
+    width: auto; /* Mantém a proporção da imagem */
+    margin-left: 20px; /* Espaço à esquerda do logo */
+}
+
+footer p {
+    margin: 0; /* Remove a margem padrão dos parágrafos */
+    flex: 1 1 auto; /* Permite que os itens cresçam e encolham conforme necessário */
+}

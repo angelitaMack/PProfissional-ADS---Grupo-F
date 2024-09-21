@@ -1,0 +1,200 @@
+/* Estilo geral */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #0056b3; /* Azul para o cabeçalho, igual ao painel lateral */
+    color: white;
+    padding: 10px;
+    text-align: center;
+    font-size: 24px;
+}
+
+.main-container {
+    display: flex;
+    height: calc(100vh - 60px); /* Ajusta o tamanho para o restante da tela, considerando o cabeçalho */
+}
+
+.sidebar {
+    width: 200px; /* Ajusta a largura do painel lateral */
+    background-color: #0056b3; /* Azul para o painel lateral */
+    color: white;
+    padding: 15px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    height: 100%;
+    position: fixed; /* Fixar o painel lateral */
+    top: 0; /* Ajusta a margem superior para 0 */
+    left: 0; /* Garante que o painel lateral esteja encostado na margem esquerda */
+}
+
+.sidebar a {
+    display: block;
+    color: white;
+    padding: 10px;
+    text-decoration: none;
+    font-size: 18px;
+    border-radius: 4px;
+    margin-top: 5px; /* Espaçamento entre itens */
+}
+
+.sidebar a:hover {
+    background-color: #004494;
+}
+
+.content {
+    margin-left: 200px; /* Espaço para o painel lateral */
+    padding: 20px;
+    flex: 1;
+}
+
+.background-overlay {
+    position: relative;
+    padding: 20px;
+}
+
+.welcome-box, .insert-box, .support-box {
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.insert-box, .support-box {
+    display: none; /* Esconde a área de inserir notas e suporte inicialmente */
+}
+
+/* Formulário para Inserir Notas */
+#insertNotesForm, #supportForm {
+    display: flex;
+    flex-direction: column;
+}
+
+#insertNotesForm label, #supportForm label {
+    margin-top: 10px;
+}
+
+#insertNotesForm input, #insertNotesForm select, #supportForm input, #supportForm select, #supportForm textarea, #insertNotesForm button,
+#supportForm button {
+    margin-top: 5px;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+#insertNotesForm button, #supportForm button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px; /* Espaçamento do botão */
+}
+
+#insertNotesForm button:hover, #supportForm button:hover {
+    background-color: #0056b3;
+}
+
+/* Estilo para a caixa de mensagens e botões */
+.welcome-box h2 {
+    font-size: 22px;
+}
+
+.welcome-box p {
+    line-height: 1.6;
+}
+
+#insertNotesForm input:focus, #insertNotesForm select:focus, 
+#supportForm input:focus, #supportForm select:focus, #supportForm textarea:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.sidebar a {
+    transition: background-color 0.3s ease;
+}
+
+/* Estilos gerais para o container da tabela */
+.table-container {
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo para o título da tabela */
+.table-container h2 {
+    text-align: center;
+    color: #333;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Estilos para a tabela */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 16px;
+}
+
+/* Estilos para os cabeçalhos da tabela */
+table thead th {
+    background-color: #1525b4;
+    color: white;
+    text-align: center;
+    padding: 12px;
+    font-family: 'Arial', sans-serif;
+    text-transform: uppercase;
+}
+
+/* Estilos para as células da tabela */
+table tbody td {
+    text-align: center;
+    padding: 10px;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Cor de fundo para as linhas ímpares */
+table tbody tr:nth-child(odd) {
+    background-color: #f2f2f2;
+}
+
+/* Efeito de hover nas linhas */
+table tbody tr:hover {
+    background-color: #e0f7fa;
+}
+
+/* Estilos para a situação do aluno */
+table tbody td:last-child {
+    font-weight: bold;
+}
+
+/* Estilos específicos para células de recuperação e reprovado */
+table tbody tr td:last-child {
+    color: #333;
+}
+
+table tbody tr td:last-child:contains("RECUPERAÇÃO") {
+    color: #FFA500; /* Laranja */
+}
+
+table tbody tr td:last-child:contains("REPROVADO") {
+    color: #f44336; /* Vermelho */
+}
+
+
+
+@media (max-width: 768px) {
+    .sidebar {
+        width: 150px;
+    }
+    .content {
+        margin-left: 150px;
+    }
+}
+
+

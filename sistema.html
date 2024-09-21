@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="sistema.css">
+    <title>Home - Calculadora de Médias</title>
+    <script src="sistema.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>CALCULADORA DE MÉDIAS</h1>
+    </header>
+    
+    <div class="main-container">
+        <nav class="sidebar" id="sidebar">
+            <!-- Opções de menu são adicionadas via JavaScript -->
+        </nav>
+        <div class="content">
+            <div class="background-overlay">
+                <div class="welcome-box" id="welcomeBox">
+                    <h2>BEM-VINDO À ESCOLA DE IDIOMAS</h2>
+                    <p>
+                        Este é o novo sistema de controle de notas da Escola de Idiomas, desenvolvido para facilitar a gestão acadêmica. Com ele, você pode consultar seu boletim escolar, visualizar suas notas e acompanhar seu desempenho em tempo real. 
+                    </p>
+                    <p>
+                        O sistema foi projetado para ser intuitivo e eficiente, oferecendo uma visão clara das suas avaliações e permitindo o acompanhamento detalhado das suas notas. Se você é aluno, pode acessar suas notas a qualquer momento e verificar seu progresso ao longo do semestre. Para professores, a plataforma oferece ferramentas para inserir notas e gerenciar a performance dos alunos com facilidade.
+                    </p>
+                    <p>
+                        Através desta ferramenta, buscamos proporcionar uma experiência acadêmica mais organizada e acessível. Aproveite todas as funcionalidades que o sistema oferece e mantenha-se sempre informado sobre seu desempenho acadêmico.
+                    </p>
+                    <p>
+                        Explore o sistema e descubra como ele pode ser útil para sua rotina acadêmica. Seja bem-vindo e aproveite a experiência!
+                    </p>
+                </div>
+
+                <div class="insert-box" id="insertBox" style="display: none;">
+                    <h2>Inserir Notas</h2>
+                    <form id="insertNotesForm">
+                        <label for="subject">Matéria:</label>
+                        <select id="subject" name="subject">
+                            <option value="">- Selecione -</option>
+                            <option value="ingles">Inglês</option>
+                            <option value="espanhol">Espanhol</option>
+                        </select>
+
+                        <label for="class">Turma:</label>
+                        <select id="class" name="class" onchange="updateStudents()">
+                            <option value="">- Selecione -</option>
+                            <option value="turma 1">Turma 1</option>
+                            <option value="turma 2">Turma 2</option>
+                        </select>
+
+                        <label for="student">Aluno:</label>
+                        <select id="student" name="student">
+                            <option value="">- Selecione -</option>
+                        </select>
+
+                        <script>
+                            const alunosTurma1 = [
+                                { value: "aline campos", text: "Aline Campos" },
+                                { value: "bruno ferreira", text: "Bruno Ferreira" },
+                                { value: "fernando de abreu", text: "Fernando de Abreu" },
+                                { value: "joao souza", text: "João Souza" }
+                            ];
+
+                            const alunosTurma2 = [
+                                { value: "alice dos santos", text: "Alice dos Santos" },
+                                { value: "brenda cavalcante", text: "Brenda Cavalcante" },
+                                { value: "felipe alencar", text: "Felipe Alencar" },
+                                { value: "joao campos", text: "João Campos" }
+                            ];
+
+                            function updateStudents() {
+                                const classSelect = document.getElementById('class');
+                                const studentSelect = document.getElementById('student');
+                                const selectedClass = classSelect.value;
+
+                                // Limpa as opções de aluno
+                                studentSelect.innerHTML = '<option value="">- Selecione -</option>';
+
+                                let alunos;
+                                if (selectedClass === "turma 1") {
+                                    alunos = alunosTurma1;
+                                } else if (selectedClass === "turma 2") {
+                                    alunos = alunosTurma2;
+                                }
+
+                                // Adiciona as opções de aluno com base na turma selecionada
+                                if (alunos) {
+                                    alunos.forEach(aluno => {
+                                        const option = document.createElement('option');
+                                        option.value = aluno.value;
+                                        option.textContent = aluno.text;
+                                        studentSelect.appendChild(option);
+                                    });
+                                }
+                            }
+                        </script>
+
+                        <label for="grade1">Prova 1:</label>
+                        <input type="number" id="grade1" name="grade1" min="0" max="10" step="0.1" required>
+                        
+                        <label for="grade2">Prova 2:</label>
+                        <input type="number" id="grade2" name="grade2" min="0" max="10" step="0.1" required>
+
+                        <label for="grade3">Participação:</label>
+                        <input type="number" id="grade3" name="grade3" min="0" max="1" step="0.1" required>
+                        
+                        <button type="button" id="calculateAverage">Calcular Média</button>
+                        
+                        <label for="average">Média:</label>
+                        <input type="number" id="average" name="average" readonly>
+
+                        <label for="situacao">Situação:</label>
+                        <input type="text" id="situacao" name="situacao" readonly>                        
+                        
+                        <button type="button" id="submitNotes">Concluir</button>
+                    </form>
+                </div>
+
+                <div class="support-box" id="supportBox" style="display: none;">
+                    <h2>Suporte</h2>
+                    <form id="supportForm">
+                        <label for="reason">Motivo do contato:</label>
+                        <select id="reason" name="reason" required>
+                            <option value="">- Selecione -</option>
+                            <option value="problema_site">Encontrei um problema no site</option>
+                            <option value="problema_inserir_notas">Encontrei um problema com alguma nota</option>
+                            <option value="problema_consultar_boletim">Encontrei um problema ao consultar boletim</option>
+                        </select>
+
+                        <label for="description">Descrição do problema:</label>
+                        <textarea id="description" name="description" rows="4" required></textarea>
+
+                        <button type="button" id="sendSupport">Enviar</button>
+                    </form>
+                </div>
+
+
+                <div class="table-container" id="tableContainer2" style="display: none;">
+                    <h2>Boletim Alunos</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>MATERIA</th>
+                                <th>TURMA</th>
+                                <th>ALUNO</th>
+                                <th>PROVA 1</th>
+                                <th>PROVA 2</th>
+                                <th>PARTIC</th>
+                                <th>MÉDIA</th>
+                                <th>SITUAÇÃO</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>ESPANHOL</td>
+                                <td>1</td>
+                                <td>ALINE CAMPOS</td>
+                                <td>8</td>
+                                <td>6</td>
+                                <td>1</td>
+                                <td>8</td>
+                                <td>APROVADO</td>
+                            </tr>
+                            <tr>
+                                <td>ESPANHOL</td>
+                                <td>1</td>
+                                <td>BRUNO FERREIRA</td>
+                                <td>6</td>
+                                <td>5</td>
+                                <td>0,5</td>
+                                <td>6</td>
+                                <td>APROVADO</td>
+                            </tr>
+                            <tr>
+                                <td>ESPANHOL</td>
+                                <td>1</td>
+                                <td>FERNANDO DE ABREU</td>
+                                <td>5</td>
+                                <td>6</td>
+                                <td>0</td>
+                                <td>5,5</td>
+                                <td>RECUPERAÇÃO</td>
+                            </tr>
+                            <tr>
+                                <td>ESPANHOL</td>
+                                <td>1</td>
+                                <td>JOAO SOUZA</td>
+                                <td>4</td>
+                                <td>3</td>
+                                <td>0,5</td>
+                                <td>4</td>
+                                <td>REPROVADO</td>
+                            </tr>
+                            <tr>
+                                <td>INGLES</td>
+                                <td>1</td>
+                                <td>ALINE CAMPOS</td>
+                                <td>7</td>
+                                <td>7</td>
+                                <td>1</td>
+                                <td>8</td>
+                                <td>APROVADO</td>
+                            </tr>
+                            <tr>
+                                <td>INGLES</td>
+                                <td>1</td>
+                                <td>BRUNO FERREIRA</td>
+                                <td>7</td>
+                                <td>4</td>
+                                <td>0,5</td>
+                                <td>6</td>
+                                <td>APROVADO</td>
+                            </tr>
+                            <tr>
+                                <td>INGLES</td>
+                                <td>1</td>
+                                <td>FERNANDO DE ABREU</td>
+                                <td>6</td>
+                                <td>5</td>
+                                <td>0</td>
+                                <td>5,5</td>
+                                <td>RECUPERAÇÃO</td>
+                            </tr>
+                            <tr>
+                                <td>INGLES</td>
+                                <td>1</td>
+                                <td>JOAO SOUZA</td>
+                                <td>5</td>
+                                <td>2</td>
+                                <td>0,5</td>
+                                <td>4</td>
+                                <td>REPROVADO</td>
+                            </tr>
+                            <tr>
+                                <td>ESPANHOL</td>
+                                <td>2</td>
+                                <td>ALICE DOS SANTOS</td>
+                                <td>8</td>
+                                <td>5</td>
+                                <td>1</td>
+                                <td>7,5</td>
+                                <td>APROVADO</td>
+                            </tr>
+                            <tr>
+                                <td>ESPANHOL</td>
+                                <td>2</td>
+                                <td>BRENDA CAVALCANTE</td>
+                                <td>9</td>
+                                <td>8</td>
+                                <td>1</td>
+                                <td>9,5</td>
+                                <td>APROVADO</td>
+                            </tr>
+                            <tr>
+                                <td>ESPANHOL</td>
+                                <td>2</td>
+                                <td>FELIPE ALENCAR</td>
+                                <td>9</td>
+                                <td>9</td>
+                                <td>1</td>
+                                <td>10</td>
+                                <td>APROVADO</td>
+                            </tr>
+                            <tr>
+                                <td>ESPANHOL</td>
+                                <td>2</td>
+                                <td>JOAO CAMPOS</td>
+                                <td>5,5</td>
+                                <td>4,5</td>
+                                <td>0,5</td>
+                                <td>5,5</td>
+                                <td>RECUPERAÇÃO</td>
+                            </tr>
+                            <tr>
+                                <td>INGLES</td>
+                                <td>2</td>
+                                <td>ALICE DOS SANTOS</td>
+                                <td>6</td>
+                                <td>6</td>
+                                <td>1</td>
+                                <td>7</td>
+                                <td>APROVADO</td>
+                            </tr>
+                            <tr>
+                                <td>INGLES</td>
+                                <td>2</td>
+                                <td>BRENDA CAVALCANTE</td>
+                                <td>7</td>
+                                <td>7</td>
+                                <td>1</td>
+                                <td>8</td>
+                                <td>APROVADO</td>
+                            </tr>
+                            <tr>
+                                <td>INGLES</td>
+                                <td>2</td>
+                                <td>FELIPE ALENCAR</td>
+                                <td>9</td>
+                                <td>6</td>
+                                <td>1</td>
+                                <td>8,5</td>
+                                <td>APROVADO</td>
+                            </tr>
+                            <tr>
+                                <td>INGLES</td>
+                                <td>2</td>
+                                <td>JOAO CAMPOS</td>
+                                <td>4,5</td>
+                                <td>5,5</td>
+                                <td>0,5</td>
+                                <td>5,5</td>
+                                <td>RECUPERAÇÃO</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="table-container" id="tableContainer" style="display: none;">
+                    <h2>Meu Boletim</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>MATERIA</th>
+                                <th>TURMA</th>
+                                <th>ALUNO</th>
+                                <th>PROVA 1</th>
+                                <th>PROVA 2</th>
+                                <th>PARTIC</th>
+                                <th>MÉDIA</th>
+                                <th>SITUAÇÃO</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>ESPANHOL</td>
+                                <td>2</td>
+                                <td>ALICE DOS SANTOS</td>
+                                <td>8</td>
+                                <td>5</td>
+                                <td>1</td>
+                                <td>7,5</td>
+                                <td>APROVADO</td>
+                            </tr>
+
+                            <tr>
+                                <td>INGLES</td>
+                                <td>2</td>
+                                <td>ALICE DOS SANTOS</td>
+                                <td>6</td>
+                                <td>6</td>
+                                <td>1</td>
+                                <td>7</td>
+                                <td>APROVADO</td>
+                            </tr>
+
+
+                        </tbody>
+                    </table>
+                </div>
+
+
+                
+            </div>
+        </div>
+    </div>
+</body>
+</html>

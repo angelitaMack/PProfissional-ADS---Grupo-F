@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <title>Recuperar Senha - Calculadora de Médias</title>
+</head>
+<body>
+    <header>
+        <h1>CALCULADORA DE MÉDIAS</h1>
+    </header>
+
+    <div class="container-login">
+        <form id="recuperarSenhaForm" onsubmit="return handleRecoverPassword(event)">
+            <h2>Recuperar Senha</h2>
+            <div id="emailField">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            
+            <button type="submit">Enviar Email de Recuperação</button>
+            <p id="message" class="hidden"></p> <!-- Mensagem de confirmação -->
+            <p><a href="index.html" id="returnButton" class="hidden">Voltar para Login</a></p> <!-- Link para voltar ao login -->
+        </form>
+    </div>
+
+    <footer>
+        <img src="Mackenzie.png" alt="Logo Mackenzie" class="logo">
+        <p>ANGELITA OLIVEIRA DOS SANTOS – RA 10369216</p>
+        <p>JOSÉ AUGUSTO FERNANDES ALVES - RA 10289575</p>
+        <p>MATHEUS ZIBORDI PEDREIRA – RA 10407683</p>
+        <p>MARIA CLARA S DE MENEZES LIMA – RA 10407550</p>
+    </footer>
+
+    <script>
+        function handleRecoverPassword(event) {
+            event.preventDefault(); // Impede o envio padrão do formulário
+            const emailField = document.getElementById('emailField');
+            const emailInput = document.getElementById('email');
+            const message = document.getElementById('message');
+            const returnButton = document.getElementById('returnButton');
+
+            // Aqui você pode implementar a lógica de recuperação de senha (ex.: enviar para um servidor)
+
+            // Exibe a mensagem
+            message.textContent = "Verifique seu e-mail, se digitado corretamente, você irá receber uma nova senha.";
+            message.className = ""; // Remove a classe 'hidden'
+            returnButton.className = ""; // Remove a classe 'hidden' do botão de retorno
+
+            // Oculta apenas o campo de email e o botão de envio
+            emailField.style.display = 'none';
+            document.querySelector('button[type="submit"]').style.display = 'none';
+
+            // Limpa o campo de email
+            emailInput.value = ""; 
+            return false; // Impede o envio real do formulário
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+
+

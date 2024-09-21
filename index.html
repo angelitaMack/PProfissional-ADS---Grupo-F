@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <title>Login - Calculadora de Médias</title>
+    <script src="database.js" defer></script>
+    <script src="login.js" defer></script>
+</head>
+<body> 
+    <header>
+        <h1>CALCULADORA DE MÉDIAS</h1>
+    </header>
+
+    <div class="container-login">
+        <form id="loginForm">
+            <h2>Login</h2>
+            <label for="username">Nome de Usuário:</label>
+            <input type="text" id="username" name="username" required>
+            
+            <label for="password">Senha:</label>
+            <div class="container-senha">
+                <input type="password" id="password" name="password" required>
+                <img src="olho.png" alt="Mostrar Senha" class="icone-olho" id="togglePassword">
+            </div>
+            
+            <label for="userType">Você é:</label>
+            <select id="userType" name="userType">
+                <option value="aluno">Aluno</option>
+                <option value="professor">Professor</option>
+            </select>
+            
+            <button type="submit">Entrar</button>
+            <p><a href="recuperar-senha.html">Esqueci minha senha</a></p> <!-- Link para recuperação -->
+        </form>
+    </div>
+
+    <script>
+        const togglePassword = document.getElementById('togglePassword');
+        const passwordInput = document.getElementById('password');
+
+        togglePassword.addEventListener('click', function() {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            this.src = type === 'password' ? 'olho.png' : 'olho.png'; // Mude o src conforme necessário para ícones de exibição
+        });
+    </script>
+
+    <footer>
+        <img src="Mackenzie.png" alt="Logo Mackenzie" class="logo">
+        <p>ANGELITA OLIVEIRA DOS SANTOS – RA 10369216</p>
+        <p>JOSÉ AUGUSTO FERNANDES ALVES - RA 10289575</p>
+        <p>MATHEUS ZIBORDI PEDREIRA – RA 10407683</p>
+        <p>MARIA CLARA S DE MENEZES LIMA – RA 10407550</p>
+    </footer>
+</body>
+</html>
+
+
